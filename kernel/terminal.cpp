@@ -268,6 +268,9 @@ void ListAllEntries(Terminal* term, uint32_t dir_cluster) {
       char name[13];
       fat::FormatName(dir[i], name);
       term->Print(name);
+      if (dir[i].attr == fat::Attribute::kDirectory) {
+        term->Print("/");
+      }
       term->Print("\n");
     }
 
