@@ -99,7 +99,7 @@ extern "C" void KernelMainNewStack(
   timer_manager->AddTimer(Timer(600, -1));
 
   char str[128];
-
+  printk("lapic_timer_freq: %lu\n", lapic_timer_freq);
   while (true) {
     __asm__("cli");
     const auto tick = timer_manager->CurrentTick();
