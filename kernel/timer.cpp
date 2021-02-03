@@ -19,11 +19,11 @@ void InitializeLAPICTimer(std::deque<Message>& msg_queue) {
   lvt_timer = 0b001 << 16; // masked, one-shot
 
   StartLAPICTimer();
-  acpi::WaitMilliseconds(100);
+  acpi::WaitMilliseconds(1);
   const auto elapsed = LAPICTimerElapsed();
   StopLAPICTimer();
 
-  lapic_timer_freq = static_cast<unsigned long>(elapsed) * 10;
+  lapic_timer_freq = static_cast<unsigned long>(elapsed) * 1000;
 
   divide_config = 0b1011; // divide 1:1
   lvt_timer = (0b010 << 16) | InterruptVector::kLAPICTimer; // not-masked, periodic
